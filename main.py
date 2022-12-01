@@ -32,7 +32,7 @@ class Employee:
         self_bdate, other_bdate = str_to_date(self.bdate, other.bdate)
         return self_bdate == other_bdate
 
-    def __le__(self, other): # переопределение <=
+    def __le__(self, other):  # переопределение <=
         if self.__eq__(other):
             return True
         if self.__lt__(other):
@@ -41,9 +41,38 @@ class Employee:
             return False
 
 
+class Department:
+    def __init__(self, title, chief=None, employees=None):
+        self.title = title
+        if employees is None:
+            employees = list()
+        self.employees = employees
+        self.chief = chief
+
+    def append(self, enp):
+        self.employees.append(enp)
+
+    def __str__(self):
+        return f"Отдел: {self.title}, Начальник: {self.chief},\
+Количество сотрудников: {len(self.employees)}"
+
+    def print_employees(self):
+        for enp in self.employees:
+            print(enp)
+
+    def print_employees_on_leave(self, status=True):
+        for enp in self.employees:
+            if enp.on_leave == status:
+                print(enp)
+
+
 petrov = Employee(1, "Петров А.А.", "09.12.1997", 50000)
 print(petrov)
 ivanov = Employee(1, "Иванов А.И.", "10.02.1996", 48000)
 print(petrov <= ivanov)
 print(petrov > ivanov)
 print(petrov == ivanov)
+
+arhiv = Department("Архив", employees=[petrov])
+arhiv.append(ivanov)
+arhiv.print_employees()
