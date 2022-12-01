@@ -68,11 +68,14 @@ class Department:
 
 petrov = Employee(1, "Петров А.А.", "09.12.1997", 50000)
 print(petrov)
-ivanov = Employee(1, "Иванов А.И.", "10.02.1996", 48000)
+ivanov = Employee(2, "Иванов А.И.", "10.02.1996", 48000)
 print(petrov <= ivanov)
 print(petrov > ivanov)
 print(petrov == ivanov)
+kravtsova = Employee(3, "Кравцова А.И.", "10.05.2000", 47000, True)
 
 arhiv = Department("Архив", employees=[petrov])
 arhiv.append(ivanov)
+arhiv.append(kravtsova)
 arhiv.print_employees()
+arhiv.print_employees_on_leave(True)
